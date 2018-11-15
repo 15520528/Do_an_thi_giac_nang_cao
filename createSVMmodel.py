@@ -33,7 +33,7 @@ def SaveModel(model, name):
     
             
 if __name__=="__main__":
-    src = "/home/namvh/Documents/do an may hoc/file/trainFeature"
+    src = "/home/namvh/Documents/do_an_cuoi_cung/file/trainFeature"
     train_set, train_lable = LoadFeature(src)
     clf = Clustering(train_set, train_lable)
-    SaveModel(clf, "/home/namvh/Documents/do an may hoc/file/modelSVM")
+    SaveModel(clf, "/home/namvh/Documents/do_an_cuoi_cung/file/modelSVM")

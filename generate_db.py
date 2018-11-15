@@ -42,8 +42,8 @@ def generate_data(src, db):
     write_file("test.txt", test_files)
 
 def main():
-    src = "/home/namvh/Documents/do an may hoc/file/images"
-    db = "/home/namvh/Documents/do an may hoc/file/dataSet"
+    src = "/home/namvh/Documents/do_an_cuoi_cung/file/images"
+    db = "/home/namvh/Documents/do_an_cuoi_cung/file/dataSet"
     generate_data(src, db)
 
 if __name__=='__main__':

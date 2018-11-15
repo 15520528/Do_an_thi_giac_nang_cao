@@ -1,17 +1,24 @@
+from keras.engine import  Model
+from keras.layers import Input
+from keras_vggface.vggface import VGGFace
+from keras_vggface import utils
 from keras.preprocessing import image
-from keras.applications.vgg16 import VGG16
-from keras.models import Model
-from keras.applications.vgg16 import preprocess_input
 import numpy as np
-import sys
+import sys                                                                                                                                                                                                                                                  
 import os
 from PIL import ImageFile
 
-ImageFile.LOAD_TRUNCATED_IMAGES=True
+'''
+ImageFile.LOAD_                                                                                                                                                         TRUNCATED_IMAGES=True
 print("[+] Setup model")
-base_model = VGG16(weights='imagenet', include_top=True)
-out = base_model.get_layer("fc2").output
-model = Model(inputs=base_model.input, outputs=out)
+layer_name = 'fc1' # edit this line
+vgg_model = VGGFace()
+out = vgg_model.get_layer(layer_name).output
+model = Model(vgg_model.input, out)                                                                                                                                                                                                                                                                                                                                                         
+'''
+
+# tensorflow
+model = VGGFace() # default : VGG16 , you can use model='resnet50' or 'senet50'
 
 
 def save_feature(save_path, feature):    
@@ -31,7 +38,7 @@ def extract_features(src):
                 img = image.load_img(img_path, target_size=(224, 224))
                 img_data = image.img_to_array(img)
                 img_data = np.expand_dims(img_data, axis=0)
-                img_data = preprocess_input(img_data)
+                img_data = utils.preprocess_input(img_data, version=1) # or version=2
 
                 print("[+] Extract feature from image : ", img_path)
                 feature = model.predict(img_data)
@@ -40,7 +47,7 @@ def extract_features(src):
             
 
 if __name__=="__main__":
-    src = "/home/namvh/Documents/do an may hoc/file/dataSet/test.txt"
+    src = "/home/namvh/Documents/do an may hoc/file 1/dataSet/test.txt"
     print(src)
     extract_features(src)
 
